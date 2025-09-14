@@ -10,21 +10,45 @@ async function main() {
   //     profilePhoto: "https://example.com/photo.jpg",
   //   },
   // });
-
   // console.log(result);
-
-  // const userData=await prisma.user.findMany({
+  const userData = await prisma.user.findMany();
+  // console.log(userData);
+  // const findUserById = await prisma.user.findFirstOrThrow({
   //   where: {
-  //    name:"ash"
-  //   }
-  // })
-  // console.log(userData)
-  const findUserById = await prisma.user.findFirstOrThrow({
+  //     id: 10,
+  //   },
+  // });
+  // console.log(findUserById);
+  // update user data
+  // const updated = await prisma.user.update({
+  //   where: {
+  //     id: 1,
+  //   },
+  //   data: {
+  //     name: "ashraful islam",
+  //     email: "ashrafulIslam@gmail.com",
+  //   },
+  // });
+  // console.log(updated);
+
+  // const updateProfilePhoto = await prisma.user.updateManyAndReturn({
+  //   where: {
+  //     profilePhoto: null,
+  //   },
+  //   data: {
+  //     profilePhoto: "defaultimage",
+  //   },
+  // });
+  // console.log(updateProfilePhoto);
+
+  const deleteUser = await prisma.user.deleteMany({
     where: {
-      id: 10,
+      id: {
+        lt: 5,
+      },
     },
   });
-  console.log(findUserById);
+  console.log(deleteUser);
 }
 
 main();
